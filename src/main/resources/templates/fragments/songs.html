@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<div class="d-flex flex-column justify-content-center align-items-center" th:fragment="songs(songs)">
+		<a th:each="song : ${songs}" th:href="@{'/songs/' + ${song.id}}">[[${song.title}]]</a>
+	</div>
+
+</body>
+</html>

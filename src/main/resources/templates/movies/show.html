@@ -3,15 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Best of the year...</title>
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
 	</head>
 	<body>
-		<h1 th:text="${movie}"></h1>
-		
-		<a href="http://localhost:8080/">Home</a>
-		<a href="http://localhost:8080/movies">Lista film</a>
-		<a href="http://localhost:8080/songs">Lista canzoni</a>
-		
-		<a href="http://localhost:8080/movies/0">Primo film</a>
-		<a href="http://localhost:8080/songs/0">Prima canzone</a>
+		<section class="d-flex flex-column justify-content-center align-items-center">
+			<header th:insert="fragments/layout.html :: layout(${name})"></header>
+			<main>[[${movie.title}]]</main>
+		</section>
 	</body>
 </html>

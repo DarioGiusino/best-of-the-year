@@ -24,7 +24,7 @@ public class BestOfTheYearController {
 		List<Movie> movieList = new ArrayList<>();
 
 		for (int i = 1; i < 6; i++) {
-			movieList.add(new Movie(i, "film " + i));
+			movieList.add(new Movie((i-1), "film " + i));
 		}
 
 		return movieList;
@@ -34,70 +34,48 @@ public class BestOfTheYearController {
 		List<Song> songList = new ArrayList<>();
 
 		for (int i = 1; i < 6; i++) {
-			songList.add(new Song(i, "canzone " + i));
+			songList.add(new Song((i-1), "canzone " + i));
 		}
 
 		return songList;
 	}
 
 	@GetMapping("/movies")
-	public String indexMovies(Model model) {
-		String s1 = "Lista di film: ";
+	public String indexMovies(Model model) {		
+		List<Movie> movies = getBestMovies();
 
-		Movie lastMovie = getBestMovies().get(getBestMovies().size() - 1);
-		int lastId = lastMovie.getId();
-
-		for (Movie m : getBestMovies()) {
-			int id = m.getId();
-
-			if (id == lastId) {
-				s1 += m.getTitle();
-			} else {
-				s1 += m.getTitle() + ", ";
-			}
-		}
-
-		model.addAttribute("movies", s1);
+		model.addAttribute("movies", movies);
+		model.addAttribute("name", "Dario");
 
 		return "movies/index";
 	}
 
 	@GetMapping("/movies/{id}")
 	public String showMovies(Model model, @PathVariable("id") int id) {
-		Movie m = getBestMovies().get(id);
+		Movie movie = getBestMovies().get(id);
 
-		model.addAttribute("movie", m);
+		model.addAttribute("movie", movie);
+		model.addAttribute("name", "Dario");
 
 		return "movies/show";
 	}
 
 	@GetMapping("/songs")
 	public String indexSongs(Model model) {
-		String s1 = "Lista di canzoni: ";
+		List<Song> songs = getBestSongs();
 
-		Song lastSong = getBestSongs().get(getBestSongs().size() - 1);
-		int lastId = lastSong.getId();
-
-		for (Song s : getBestSongs()) {
-			int id = s.getId();
-
-			if (id == lastId) {
-				s1 += s.getTitle();
-			} else {
-				s1 += s.getTitle() + ", ";
-			}
-		}
-
-		model.addAttribute("songs", s1);
+		model.addAttribute("songs", songs);
+		model.addAttribute("name", "Dario");
 
 		return "songs/index";
 	}
 
 	@GetMapping("/songs/{id}")
 	public String showSongs(Model model, @PathVariable("id") int id) {
-		Song s1 = getBestSongs().get(id);
+		Song song = getBestSongs().get(id);
 
-		model.addAttribute("song", s1);
+		model.addAttribute("song", song);
+		model.addAttribute("name", "Dario");
 
 		return "songs/show";
 	}

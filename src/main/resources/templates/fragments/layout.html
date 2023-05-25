@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<div th:fragment="layout(name)">
+		<nav>
+			<div class="container">
+				<a th:href="@{/}">Best of the year by [[${name}]]</a> 
+				<a class="mx-3" th:href="@{/movies}">Movies</a>
+				<a th:href="@{/songs}">Songs</a>
+			</div>
+		</nav>
+	</div>
+
+</body>
+</html>
